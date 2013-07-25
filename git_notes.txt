@@ -1,0 +1,8 @@
+git was cloned from git via
+(Term session:)
+
+$ git clone https://github.com/git/git.git
+$ cd git
+$ make
+$ cd
+$ chmod -R u+rwx git/
