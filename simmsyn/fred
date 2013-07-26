@@ -1,0 +1,103 @@
+abfillall.f:1002  format (a80)
+abfillall.f:c*****read individual line and mean abundance information for each species 
+abfillall.f:1001     format (a2, 1x, a2) 
+abfillall.f:1003        format (20x, f5.2, 23x, f4.2, 14x, i3)
+abfillall.f:1011     format (f7.3, 14x, f7.3)
+abfillall.f:1004  format ('natoms       ', i2, f9.2/(4(f10.1,f10.2)))
+abfillall.f:1007  format ('nmol         12'/ 6x, '101.', 6x, '101.', 6x, '106.',
+abfillall.f:1005  format (' FeI+FeII metallicity = ', f6.2, 
+abfillall.f:1006  format (4(a5,f8.2))
+abfillall.f:1010  format (' put EW abundances and C guess (', f4.2, 
+abfindrun.f:1010  format (80(' '))
+abfindrun.f:1002  format (a80)
+abfindrun.f:1020           format ('0', i1)
+abfindrun.f:1021           format (i2)
+abundplot.f:1003  format ('(13hpostlandfile ,a',i1,'$)')
+abundplot.f:1004  format ('(13hpostlandfile ,a',i2,'$)')
+abundplot.f:1005     format ('FILE OPENING ERROR:',a60)
+abundplot.f:c      call sm_format ('i2')
+abundplot.f:1006  format ('T ', i4, ' g ', f4.2, ' M/H ', f5.2,
+abundplot.f:1001  format ('Li offset is w.r.t. Spite plateau value of +2.2')
+abundplot.f:1002  format (' created summary abundance plot: ',60a1)
+abundplot.f:1008  format ('species   log eps     sigma  erradopt',
+abundplot.f:1007           format (a7, 4f10.2, i5, 7x, a1)
+abundplot.f:c1012  format (80(' '))
+abundplot.f:c1011  format (40a1, a6, 6f6.2, 100(a6, 5f6.2) )
+docarbon.f:1001     format (' wanting to make a carbon synthesis file: ',60a1)
+docarbon.f:1002  format (a80)
+docarbon.f:1003     format (6f9.3)
+docarbon.f:1004     format (7x, a1, 5f9.3)
+docarbon.f:1008  format ('(3hcp ,a', i1, ', 10h batch.par', '$)')
+docarbon.f:1009  format ('(3hcp ,a', i2, ', 10h batch.par', '$)')
+docarbon.f:1010  format (80(' '))
+docarbon.f:1012        format ('abundances     2     5'/
+dosyns.f:c     information (from the "parfile" subdirectory) 
+dosyns.f:1001  format (80(' '))
+dosyns.f:1002  format (a80)
+dosyns.f:1003  format ('/syn', i4, '.par', 69(' '))
+dosyns.f:1004  format ('RUN           ', i2)
+dosyns.f:1005  format (6f9.3)
+dosyns.f:1006  format (7x, a1, 5f9.3)
+dosyns.f:1007  format (' PROBLEM WITH PARFILE, SKIPPING IT: ', a11)
+dosyns.f:1008  format ('(3hcp ,a', i1, ', 10h batch.par', '$)')
+dosyns.f:1009  format ('(3hcp ,a', i2, ', 10h batch.par', '$)')
+extract.f:1003  format (4x, 'lambda', 5x, 'ID', 8x, 'EP', 5x, 'loggf',
+extract.f:1001  format (a80)
+extract.f:1012        format (a2, f5.2)
+extract.f:1013        format (7x, f8.5)
+extract.f:1002      format (f10.1, 3x,2a2, 3f10.2)
+fetilines.f:c*****read individual line and mean abundance information for just
+fetilines.f:1002  format (a80)
+fetilines.f:1001     format (a2, 1x, a2) 
+fetilines.f:1003        format (20x, f5.2, 23x, f4.2, 14x, i3)
+fetilines.f:1011     format (f7.3, 14x, f7.3)
+fillpar.f:c     with the appropriate information.
+fillpar.f:1002  format (a80)
+fillpar.f:1003  format ('/syn', i4, '.par', 69(' '))
+fillpar.f:1004  format ('RUN           ', i2)
+fillpar.f:1005  format (6f9.3)
+fillpar.f:1006  format (7x, a1, 5f9.3)
+fillpar.f:1007  format (' PROBLEM WITH PARFILE, SKIPPING IT: ', a11)
+fixcarbon.f:1001  format (a80)
+fixcarbon.f:1002  format (f5.2)
+fixcarbon.f:1003  format (f8.5)
+fixcarbon.f:1004     format (a35, f5.2, a40)
+fixcarbon.f:1005  format (' put derived C abundance (', f5.2,
+lineplot.f:1020     format ('0', i1)
+lineplot.f:1021     format (i2)
+lineplot.f:1003  format ('(13hpostlandfile ,a',i1,'$)')
+lineplot.f:1004  format ('(13hpostlandfile ,a',i2,'$)')
+lineplot.f:1005     format ('FILE OPENING ERROR:',a60)
+lineplot.f:1001  format ('T ', i4, ' g ', f4.2, ' M/H ', f5.2, 
+lineplot.f:1010        format (a3, '(', f5.2, ',', f4.2, ',', i3, ')')
+lineplot.f:1006  format (' made a plot of Fe and Ti line abundances: ', 40a1)
+lineplot.f:1011        format ('(14hgv -landscape ,a', i1,
+lineplot.f:1012        format ('(14hgv -landscape ,a', i2,
+lineplot.f:1013        format ('(26hgv -orientation=landscape ,a', i1, 
+lineplot.f:1014        format ('(26hgv -orientation=landscape ,a', i2, 
+lineplot.f:1015        format (
+lineplot.f:1016        format (
+makeewfiles.f:1006  format (80(' '))
+makeewfiles.f:1001  format (a80)
+makeewfiles.f:1003     format (' WARNING: requested [M/H], ', f6.2, 
+makeewfiles.f:1012  format (a25, 2x, 2a6, '   EWs of ordinary lines')
+makeewfiles.f:1013  format (a25, 2x, 2a6, '   EWs of lines to be synthesized')
+makeewfiles.f:1014  format (a25, 2x, 2a6, '   3-sigma EW upper limits')
+makeewfiles.f:1004  format (f10.3, f10.1, 2f10.3, 20x, f10.1)
+makeewfiles.f:1007  format (f10.3, f10.1, 2f10.3, 20x, f10.1, '  S/N=',i3)
+makeewfiles.f:1005  format (' total FWHM, blue chip: ', f6.2, 
+makemodel.f:1005     format (' WARNING: input v_t is ', f4.2, 
+makemodel.f:1009  format (i6, 3f8.2 / a7)
+makemodel.f:1001  format(80a1)
+makemodel.f:1002  format (a80)
+makemodel.f:1006     format (f4.2)
+makemodel.f:1003  format (' created initial model file: ', 60a1) 
+makemodel.f:1004  format ('        Teff= ', i4, '   log(g)= ', f5.2, 
+nametrans.f:1001  format ('SOMETHING WRONG WITH ELEMENT OR ION NAME: ', a2, 3x, a2)
+new6ian.f:c1001  format ('/Users/chris/newcodes/moogtotnew/MOOGSILENT',
+new6ian.f:1001  format ('/Users/chris/newcodes/moogscatbatch/MOOGSILENT',
+new6ian.f:1002  format ('/Users/chris/modprog/makekurandy/ksilent.e',
+new6ian.f:1003  format ('/Users/chris/modprog/marcs.models/msilent.e',
+readspec.f:1001  format (a80)
+readspec.f:1002  format (' read observed spectrum file: '/' ', a79/
+startup.f:1001  format (a80)

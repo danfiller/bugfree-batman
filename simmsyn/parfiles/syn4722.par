@@ -1,0 +1,12 @@
+RUN           99
+strong         0
+hardpost_out   ".pzn01"
+lines_in       "/lin4722new"
+abundances     1     5
+30       -0.6  -0.3   0.0   0.3   0.6
+synlimits
+4719.7  4724.7    0.01    0.75
+plotpars      1
+4719.7  4724.7    0.00    1.05
+0.0      0.000   0.000    1.00
+g         0.13     0.0     0.0     0.0     0.0

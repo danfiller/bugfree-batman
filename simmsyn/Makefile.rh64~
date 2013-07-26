@@ -1,0 +1,31 @@
+#     makefile for SIMMCODE with all of the common block assignments;
+#     this is for 64-bit REDHAT linux machines
+                                                                                
+#     here are the object files
+OBJECTS = simmodf.o abfindrun.o abfillall.o abundplot.o countline.o \
+        docarbon.o dosyns.o extract.o fetilines.o fillpar.o findmin.o \
+        findquote.o fixcarbon.o iterate.o lineplot.o \
+        makeewfiles.o makemodel.o meld.o nametrans.o paramlimits.o \
+        preset.o readspec.o startup.o substitute.o
+
+#     here are the common files
+COMMON =  quants.com spectr.com characts.com
+
+FC = f77 -Wall
+
+# the following lines point to some needed libraries
+X11LIB = /usr/lib64
+SMLIB = /uufs/astro.utah.edu/sys/pkg/sm/std/lib
+
+#        here are the compilation and linking commands
+all: SIMMODF ;
+                                                                                
+SIMMODF:  $(OBJECTS);
+	$(FC) $(OBJECTS) -o SIMMODF -L$(X11LIB) -lX11 \
+	-L$(SMLIB) -lplotsub -ldevices -lutils -ltk -ltcl
+                                                                                
+$(OBJECTS): $(COMMON)
+                                                                                
+clean:
+	-rm -f *.o SIMMODF libSIMMODF.a
+

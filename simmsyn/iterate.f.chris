@@ -1,0 +1,100 @@
+
+c***********************************************************************
+      subroutine iterate
+c***********************************************************************
+c     this routine decides whether model iterations are needed, and
+c     if so by how much; empirical fudge factors may be put in to
+c     "epslope" and "deltamean" to get faster convergence
+
+      implicit real*8 (a-h,o-z)
+      include 'quants.com'
+      include 'characts.com'
+      real*8 loggtemp, vttemp, tefftemp
+
+      fudgeteff = 0.8
+      fudgevt   = 1.2
+      fudgelogg = 1.3
+
+c*****is a logg iteration needed because the gravity is WAAAY off?
+      deltafe12 = specab(26,2) - specab(26,1)
+      deltati12 = specab(22,2) - specab(22,1)
+      if ((specnum(22,1) .lt. 4) .or. (specnum(22,2) .lt. 4)) then
+         deltamean = deltafe12
+      else 
+         deltamean = (2.*deltafe12 + deltati12)/3.
+      endif
+      if (dabs(deltamean) .gt. 0.25) then 
+         oldniter = niter
+         niter = niter + 1
+         loggtemp = logg - fudgelogg*deltamean
+         logg = dble(int((loggtemp/0.05+0.5)))*0.05 + 0.00001
+         return
+      endif
+
+c*****is a Teff iteration needed?
+      if (dabs(epslope(26,1)) .gt. 0.020) then
+         oldteff = teff
+         oldniter = niter
+         niter = niter + 1
+         tefftemp = 5040./(5040./teff-fudgeteff*epslope(26,1))
+         teff = dble(int((tefftemp/10.0+0.5)))*10.0 + 0.00001
+         vttemp = vt + (teff-oldteff)/3000.
+         vt = dble(int((vttemp/0.05+0.5)))*0.05 + 0.00001
+         loggtemp = logg + (teff-oldteff)/2000.
+         logg = dble(int((loggtemp/0.05+0.5)))*0.05 + 0.00001
+         return
+      endif
+
+c*****is a v_t iteration needed?
+      if (dabs(rwslope(26,1)) .gt. 0.10) then
+         oldvt = vt
+         oldniter = niter
+         niter = niter + 1
+         vttemp = vt + fudgevt*(rwslope(22,2)+2.*rwslope(26,1))/3.
+         vt = dble(int((vttemp/0.05+0.5)))*0.05 + 0.00001
+         tefftemp = teff + (vt-oldvt)*1000.
+         teff = dble(int((tefftemp/10.0+0.5)))*10.0 + 0.00001
+         loggtemp = logg + (vt-oldvt)*2.
+         logg = dble(int((loggtemp/0.05+0.5)))*0.05 + 0.00001
+         return
+      endif
+
+c*****is a logg iteration needed?
+      deltafe12 = specab(26,2) - specab(26,1)
+      deltati12 = specab(22,2) - specab(22,1)
+      if ((specab(22,1) .lt. 4) .or. (specab(22,2) .lt. 4)) then
+         deltamean = deltafe12
+      else 
+         deltamean = (2.*deltafe12 + deltati12)/3.
+      endif
+c     this functions as the convergence criterion: A(FeI)=A(FeII)+-0.10
+      if ((dabs(deltamean) .gt. 0.10) 
+     .      .or. (dabs(deltafe12) .ge. 0.10)) then
+         oldniter = niter
+         niter = niter + 1
+         loggtemp = logg - 2.*fudgelogg*deltamean
+         logg = dble(int((loggtemp/0.05+0.5)))*0.05 + 0.00001
+         return
+      endif
+
+*****is a more precise v_t iteration needed, using only Fe?
+      if (dabs(rwslope(26,1)) .gt. 0.05) then
+         oldvt = vt
+         oldniter = niter
+         niter = niter + 1
+         vttemp = vt + 1.5*fudgevt*rwslope(26,1)
+         vt = dble(int((vttemp/0.05+0.5)))*0.05 + 0.00001
+         tefftemp = teff + (vt-oldvt)*500.
+         teff = dble(int((tefftemp/10.0+0.5)))*10.0 + 0.00001
+         loggtemp = logg + (vt-oldvt)*1.5
+         logg = dble(int((loggtemp/0.05+0.5)))*0.05 + 0.00001
+         return
+      endif
+
+c*****iterations are done
+      oldniter = niter
+
+      return
+      end
+
+
